@@ -24,7 +24,7 @@ SpectrogramProcessor
 
 import numpy as np
 import librosa
-from config import AudioConfig
+from app.midi_to_fft.config import AudioConfig
 
 # Константа: диапазон dB для нормировки (стандарт для музыки)
 _DB_MIN = -80.0  # librosa power_to_db с top_db=80 даёт нижний предел −80 дБ
@@ -107,5 +107,9 @@ class SpectrogramProcessor:
             # Это устойчивая нормировка: диапазон одинаков для всех сэмплов
             spectrograms = (spectrograms - _DB_MIN) / (_DB_MAX - _DB_MIN)
             spectrograms = np.clip(spectrograms, 0.0, 1.0)
+
+        mn, mx = spectrograms.min(), spectrograms.max()
+        if mx - mn > 1e-6:
+            spectrograms = (spectrograms - mn) / (mx - mn)
 
         return spectrograms

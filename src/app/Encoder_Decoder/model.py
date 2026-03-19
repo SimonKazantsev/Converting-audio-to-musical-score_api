@@ -56,7 +56,7 @@ import torch
 import torch.nn as nn
 import torchvision.models as tv_models
 
-from tokenizer import VOCAB_SIZE, PAD_TOKEN
+from app.Encoder_Decoder.tokenizer import VOCAB_SIZE, PAD_TOKEN
 
 
 # ══════════════════════════════════════════════════════════════

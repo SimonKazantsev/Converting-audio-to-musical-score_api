@@ -1,7 +1,7 @@
 import numpy as np
-from config import AudioConfig
-from midi_renderer import MidiRenderer
-from audio_processor import SpectrogramProcessor
+from app.midi_to_fft.config import AudioConfig
+from app.midi_to_fft.midi_renderer import MidiRenderer
+from app.midi_to_fft.audio_processor import SpectrogramProcessor
 
 
 class MidiToFFTMap:
