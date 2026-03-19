@@ -1,0 +1,13 @@
+max_len: 256
+temperature: 1.0
+top_k: 50
+d_model: 128
+nhead: 8
+num_encoder_layers: 1
+num_decoder_layers: 4
+dim_feedforward: 512
+dropout: 0.1
+pretrained_encoder: true
+max_seq_len: 512
+vocab_size: 391
+sample_rate: 22050

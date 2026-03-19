@@ -4,5 +4,6 @@ midi_to_fft/__pycache__/
 *sf2
 *wav
 *npy
+*mp3
 __pycache__/
 midi_to_fft/examples/*Identifier

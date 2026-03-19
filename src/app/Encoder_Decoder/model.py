@@ -56,7 +56,12 @@ import torch
 import torch.nn as nn
 import torchvision.models as tv_models
 
-from app.Encoder_Decoder.tokenizer import VOCAB_SIZE, PAD_TOKEN
+from app.Encoder_Decoder.tokenizer import (
+    VOCAB_SIZE,
+    PAD_TOKEN,
+    BOS_TOKEN,
+    EOS_TOKEN
+)
 
 
 # ══════════════════════════════════════════════════════════════
@@ -334,7 +339,6 @@ class ScoreGenerationModel(nn.Module):
             top_k: int = 0,
             top_p: float = 0.92,
     ) -> torch.Tensor:
-        from tokenizer import BOS_TOKEN, EOS_TOKEN
         self.eval()
         device = spectrograms.device
         memory = self.encoder(spectrograms)

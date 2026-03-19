@@ -20,14 +20,17 @@ class AudioToNotesEncoder:
             config: ModelConfig,
             model: ScoreGenerationModel,
             tokenizer: MidiTokenizer,
-            token_to_midi_converter: TokenToMidiConverter
+            token_to_midi_converter: TokenToMidiConverter,
+            processor: SpectrogramProcessor,
         ):
         """Инициализация."""
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print(self.device)
         self.config = config
         self.model = model
         self.tokenizer = tokenizer
         self.token_to_midi_converter = token_to_midi_converter
+        self.processor = processor
     
     def predict(self, audio_path: str):
         """Предсказание нот из аудиоданных."""
@@ -48,12 +51,11 @@ class AudioToNotesEncoder:
     def _convert_audio_to_spectrogram(
             self,
             audio_path: str,
-            processor: SpectrogramProcessor
         ):
         """Преобразование аудио в спектрограмму."""
         audio, _ = librosa.load(
             audio_path,
-            sr=self.config.audio_config.sample_rate,
+            sr=22500,
             mono=True
         )
-        return processor.compute(audio)
+        return self.processor.compute(audio)
